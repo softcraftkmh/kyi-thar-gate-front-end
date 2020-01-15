@@ -4,7 +4,7 @@ import App from "next/app";
 import withRedux from "next-redux-wrapper";
 import makeStore from "../redux";
 
-import "video-react/dist/video-react.css";
+import "materialize-css/dist/css/materialize.min.css";
 import "../styles/index.scss";
 
 class MyApp extends App {
