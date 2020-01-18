@@ -1,24 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Layout from "components/App/Layout";
+import ShopForm from "components/PanSar/ShopForm";
+import ItemForm from "components/PanSar/ItemForm";
+import "./styles.scss";
 
 const index = () => {
+  const [shopFormValues, setShopForm] = useState({ name: "", note: "" });
+
   return (
-    <div className="row">
-      <form className="col s12">
-        <div className="row">
-          <div className="input-field col s6">
-            <input
-              placeholder="Placeholder"
-              id="first_name"
-              type="text"
-              className="validate"
-            />
-            <label className="active" htmlFor="first_name">
-              First Name
-            </label>
-          </div>
-        </div>
-      </form>
-    </div>
+    <Layout>
+      <section>
+        <ShopForm shopFormValues={shopFormValues} setShopForm={setShopForm} />
+        <ItemForm />
+      </section>
+    </Layout>
   );
 };
 

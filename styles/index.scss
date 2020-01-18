@@ -3,3 +3,9 @@
 * {
   font-family: "Lato", serif;
 }
+
+.app-btn {
+  @extend .waves-effect;
+  @extend .waves-light;
+  @extend .btn;
+}

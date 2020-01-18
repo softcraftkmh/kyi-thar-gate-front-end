@@ -1,0 +1,13 @@
+.layout {
+  &__container {
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 24px;
+  }
+}

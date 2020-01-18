@@ -1,0 +1,8 @@
+.itemForm {
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 80px;
+    gap: 24px;
+    align-items: center;
+  }
+}
