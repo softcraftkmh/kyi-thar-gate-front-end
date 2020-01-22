@@ -7,31 +7,38 @@ import Input from "components/App/Input";
 import "./styles.scss";
 
 const ItemSchema = Yup.object({
-  itemName: Yup.string().required("Required."),
-  quantity: Yup.number().positive("Cannot be negative value.")
+  name: Yup.string().required("Required."),
+  quantity: Yup.number()
+    .positive("Cannot be negative value.")
+    .required("Required."),
+  price: Yup.number()
+    .positive("Cannot be negative value.")
+    .required("Required.")
 });
 
-const index = () => {
+const index = ({ data, setData }) => {
   return (
     <section>
       <Formik
-        initialValues={{ itemName: "", quantity: "", price: 0 }}
-        onSubmit={value => {
-          console.log(value);
+        initialValues={{ name: "", quantity: "", price: "" }}
+        onSubmit={(value, { resetForm }) => {
+          resetForm();
+          setData([...data, value]);
         }}
         validationSchema={ItemSchema}
+        autoComplete
       >
         {({ values, errors, touched, handleChange }) => {
-          console.log("TCL: index -> errors", errors);
           return (
             <Form className="itemForm__container">
               <Input
-                id="itemName"
-                value={values.itemName}
+                id="name"
+                value={values.name}
                 label="Item Name"
                 onChange={handleChange}
-                error={errors.itemName}
-                touched={touched.itemName}
+                error={errors.name}
+                touched={touched.name}
+                autoComplete
               />
               <Input
                 id="quantity"
@@ -40,6 +47,15 @@ const index = () => {
                 onChange={handleChange}
                 error={errors.quantity}
                 touched={touched.quantity}
+                type="number"
+              />
+              <Input
+                id="price"
+                value={values.price}
+                label="Price"
+                onChange={handleChange}
+                error={errors.price}
+                touched={touched.price}
                 type="number"
               />
               <button className="app-btn" type="submit">

@@ -8,12 +8,6 @@ const index = ({ children }) => {
     <section>
       <header className="layout__header">
         <Link href="/admin/items">
-          <button className="waves-effect waves-light btn">ပန်းစာ</button>
-        </Link>
-        <Link href="/admin/items">
-          <button className="waves-effect waves-light btn">စာရင်းသွင်း</button>
-        </Link>
-        <Link href="/admin/items">
           <button className="waves-effect waves-light btn">ဘောင်ချာ</button>
         </Link>
         <Link href="/admin/items">

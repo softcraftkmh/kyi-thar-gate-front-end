@@ -1,0 +1,10 @@
+.voucherInformation {
+  display: grid;
+  grid-template-areas: "none none none content";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 20px 0px 0px 0px;
+
+  &__content {
+    grid-area: content;
+  }
+}

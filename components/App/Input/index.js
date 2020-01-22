@@ -10,11 +10,11 @@ const index = ({
   onChange,
   type = "text",
   error,
-  touched
+  touched,
+  className
 }) => {
-  console.log("TCL: error", error);
   return (
-    <div className="input-field">
+    <div className={`input-field ${className}`}>
       <input
         placeholder={placeHolder}
         id={id}
@@ -22,6 +22,7 @@ const index = ({
         className="validate"
         onChange={onChange}
         value={value}
+        autoComplete="on"
       />
       <label className={value && "active"} htmlFor={id}>
         {label}

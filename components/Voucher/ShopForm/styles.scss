@@ -1,0 +1,12 @@
+.shopForm {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px 32px;
+  align-items: center;
+
+  &__note {
+    grid-column: span 2;
+  }
+
+  margin: 12px 0px;
+}

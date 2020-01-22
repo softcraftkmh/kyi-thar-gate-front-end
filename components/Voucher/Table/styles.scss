@@ -1,0 +1,23 @@
+.voucherTable {
+  &__no {
+    width: 80px;
+  }
+
+  &__actions {
+    width: 200px;
+  }
+
+  &__noDataInformation {
+    &-container {
+      font-size: 2em;
+      display: flex;
+      height: 260px;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #26a69a;
+      border-radius: 12px;
+    }
+  }
+}
