@@ -114,8 +114,8 @@ function MyTable({ data, setData }) {
         accessor: "quantity"
       },
       {
-        Header: "Price",
-        accessor: "price"
+        Header: "Cost",
+        accessor: "cost"
       }
     ],
     [data]

@@ -8,6 +8,7 @@ module.exports = (nextConfig = {}) =>
         "../components"
       );
       config.resolve.alias["utils"] = path.join(__dirname, "../utils");
+      config.resolve.alias["store"] = path.join(__dirname, "../store");
       return config;
     }
   });

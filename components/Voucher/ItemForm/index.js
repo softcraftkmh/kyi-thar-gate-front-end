@@ -1,71 +1,61 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import _ from "lodash";
 
 import Input from "components/App/Input";
 
 import "./styles.scss";
 
-const ItemSchema = Yup.object({
-  name: Yup.string().required("Required."),
-  quantity: Yup.number()
-    .positive("Cannot be negative value.")
-    .required("Required."),
-  price: Yup.number()
-    .positive("Cannot be negative value.")
-    .required("Required.")
-});
+const index = ({ setItem, item, items, setItems }) => {
+  const resetItem = () => {
+    setItem({ name: "", quantity: "", cost: "" });
+  };
 
-const index = ({ data, setData }) => {
+  const handleChange = (e, tag) => {
+    const { value } = e.target;
+    setItem({ ...item, [tag]: value });
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    setItems([...items, item]);
+    resetItem();
+  };
+
+  const checkIsValid = () => {
+    const { name, quantity, cost } = item;
+    if (!name || !quantity || !cost) return false;
+    else return true;
+  };
+
   return (
-    <section>
-      <Formik
-        initialValues={{ name: "", quantity: "", price: "" }}
-        onSubmit={(value, { resetForm }) => {
-          resetForm();
-          setData([...data, value]);
-        }}
-        validationSchema={ItemSchema}
-        autoComplete
-      >
-        {({ values, errors, touched, handleChange }) => {
-          return (
-            <Form className="itemForm__container">
-              <Input
-                id="name"
-                value={values.name}
-                label="Item Name"
-                onChange={handleChange}
-                error={errors.name}
-                touched={touched.name}
-                autoComplete
-              />
-              <Input
-                id="quantity"
-                value={values.quantity}
-                label="Quantity"
-                onChange={handleChange}
-                error={errors.quantity}
-                touched={touched.quantity}
-                type="number"
-              />
-              <Input
-                id="price"
-                value={values.price}
-                label="Price"
-                onChange={handleChange}
-                error={errors.price}
-                touched={touched.price}
-                type="number"
-              />
-              <button className="app-btn" type="submit">
-                Add
-              </button>
-            </Form>
-          );
-        }}
-      </Formik>
-    </section>
+    <form className="itemForm__container" onSubmit={onSubmit}>
+      <Input
+        value={item.name}
+        onChange={e => handleChange(e, "name")}
+        error={!item.city && "Required."}
+        label="Item Name"
+        id="itemName"
+      />
+      <Input
+        value={item.quantity}
+        onChange={e => handleChange(e, "quantity")}
+        error={!item.quantity && "Required."}
+        label="Quantity"
+        id="quantity"
+        type="number"
+      />
+      <Input
+        value={item.cost}
+        onChange={e => handleChange(e, "cost")}
+        error={!item.cost && "Required."}
+        label="cost"
+        id="itemCost"
+        type="number"
+      />
+      <button className="app-btn" type="submit" disabled={!checkIsValid()}>
+        Add
+      </button>
+    </form>
   );
 };
 

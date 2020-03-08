@@ -1,28 +1,24 @@
 import React from "react";
-import { Provider } from "react-redux";
-import App from "next/app";
+import { Provider, useSelector } from "react-redux";
 import withRedux from "next-redux-wrapper";
-import makeStore from "../redux";
+import { createSelector } from "reselect";
+
+import makeStore from "store/";
+
+import Alert from "components/App/Alert";
 
 import "../styles/index.scss";
 
-class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
+// const alertSelector = createSelector(state => state.alert);
 
-    return { pageProps };
-  }
-
-  render() {
-    const { Component, pageProps, store } = this.props;
-    return (
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-    );
-  }
+function MyApp({ Component, pageProps, store }) {
+  const alert = store.getState().alert;
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+      {alert.message && <Alert message={alert.message} type={alert.type} />}
+    </Provider>
+  );
 }
 
 export default withRedux(makeStore)(MyApp);

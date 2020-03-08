@@ -10,7 +10,6 @@ const index = ({
   onChange,
   type = "text",
   error,
-  touched,
   className
 }) => {
   return (
@@ -27,7 +26,7 @@ const index = ({
       <label className={value && "active"} htmlFor={id}>
         {label}
       </label>
-      <span className="helper-text red-text">{touched && error}</span>
+      <span className="helper-text red-text">{error}</span>
     </div>
   );
 };

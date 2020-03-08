@@ -1,49 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "components/App/Input";
 
 import "./styles.scss";
 
-const ShopForm = ({ setShopForm, shopFormValues }) => {
-  const handleShopFormChange = (e, tag) => {
+const ShopForm = ({ setShop, shop }) => {
+  const handleChange = (e, tag) => {
     const { value } = e.target;
-    setShopForm({ ...shopFormValues, [tag]: value });
+    setShop({ ...shop, [tag]: value });
   };
 
   return (
-    <form className="shopForm">
+    <section className="shopForm">
       <Input
-        onChange={e => handleShopFormChange(e, "shopName")}
-        value={shopFormValues.shopName}
-        id="shopName"
+        onChange={e => handleChange(e, "shop")}
+        value={shop.shop}
+        error={!shop.shop && "Required."}
+        id="shop"
         label="Shop Name"
+        autofocus
       />
       <Input
-        onChange={e => handleShopFormChange(e, "city")}
-        value={shopFormValues.city}
+        onChange={e => handleChange(e, "city")}
+        value={shop.city}
+        error={!shop.city && "Required."}
         id="city"
         label="City Name"
       />
       <Input
-        onChange={e => handleShopFormChange(e, "date")}
-        value={shopFormValues.date}
+        onChange={e => handleChange(e, "date")}
+        value={shop.date}
+        error={!shop.date && "Required."}
         id="date"
         label="Date"
         type="date"
       />
       <Input
-        onChange={e => handleShopFormChange(e, "carNo")}
-        value={shopFormValues.carNo}
+        onChange={e => handleChange(e, "carNo")}
+        value={shop.carNo}
+        error={!shop.carNo && "Required."}
         id="carNo"
         label="Car No."
       />
       <Input
         className="shopForm__note"
-        onChange={e => handleShopFormChange(e, "note")}
-        value={shopFormValues.note}
+        onChange={e => handleChange(e, "note")}
+        value={shop.note}
         id="note"
         label="Note"
       />
-    </form>
+    </section>
   );
 };
 
